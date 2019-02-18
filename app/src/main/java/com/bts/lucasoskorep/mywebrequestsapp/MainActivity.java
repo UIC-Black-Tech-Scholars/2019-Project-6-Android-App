@@ -25,9 +25,9 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     
     private static final String TAG = "MainActivity";
-    private static final String ENDPOINT_URL = "http://10.77.76.130:8080/";
-    private static final String GET_ENDPOINT = "";
-    private static final String POST_ENDOINT = "";
+    private static final String ENDPOINT_URL = "http://<IP_GOES_HERE>:8080/";
+    private static final String GET_ENDPOINT = "<ENDPOINT HERE>";
+    private static final String POST_ENDOINT = "<ENDPOINT HERE>";
 
     private RequestQueue requestQueue;
     private TextView textView;
@@ -41,97 +41,97 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
         requestQueue = Volley.newRequestQueue(this);
-        textView = findViewById(R.id.text_view_id);
-        getButton = findViewById(R.id.get_req_button);
-        postButton = findViewById(R.id.post_req_button);
-        
+
+        //Get the ui elements
         fab = findViewById(R.id.fab);
-        setFabOnClickListener();
-        setGetButtonOnClickListener();
-        setPostButtonOnClickListener();
+
+        //Set up the onClickEvents of the ui elements
+//        setFabOnClickListener();
+//        setGetButtonOnClickListener();
+//        setPostButtonOnClickListener();
     }
 
 
-    private void setGetButtonOnClickListener(){
-        getButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Set the text to display ui info
-                textView.setText("Sending Get Request....Awaiting Response");
-                //Send the request
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                        Request.Method.GET,
-                        ENDPOINT_URL + GET_ENDPOINT,
-                        null,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.i(TAG, response.toString());
-                                textView.setText(response.toString());
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.i(TAG, error.getMessage());
-                                textView.setText(error.getMessage());
-                            }
-                        }
-
-                );
-                requestQueue.add(jsonObjectRequest);
-            }
-        });
-    }
-
-    /**
-     * Sets the onclick listener for the postRequest button
-     */
-    private void setPostButtonOnClickListener(){
-        //Create a new jsonObject
-        final JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("Key", "Value");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        //Set the button's onclick listener.
-        postButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Update the UI so that you know the request is sending
-                textView.setText("Sending Post Request....Awaiting Response");
-                //Send the request
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                        Request.Method.POST,
-                        ENDPOINT_URL + POST_ENDOINT,
-                        jsonObject,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.i(TAG, response.toString());
-                                textView.setText(response.toString());
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.i(TAG, error.getMessage());
-                                textView.setText(error.getMessage());
-                            }
-                        }
-
-                );
-                requestQueue.add(jsonObjectRequest);
-            }
-        });
-
-
-    }
+//    private void setGetButtonOnClickListener(){
+//        getButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //Set the text to display ui info
+//                textView.setText("Sending Get Request....Awaiting Response");
+//                //Send the request
+//                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+//                        Request.Method.GET,
+//                        ENDPOINT_URL + GET_ENDPOINT,
+//                        null,
+//                        new Response.Listener<JSONObject>() {
+//                            @Override
+//                            public void onResponse(JSONObject response) {
+//                                Log.i(TAG, response.toString());
+//                                textView.setText(response.toString());
+//                            }
+//                        },
+//                        new Response.ErrorListener() {
+//                            @Override
+//                            public void onErrorResponse(VolleyError error) {
+//                                Log.i(TAG, error.getMessage());
+//                                textView.setText(error.getMessage());
+//                            }
+//                        }
+//
+//                );
+//                requestQueue.add(jsonObjectRequest);
+//            }
+//        });
+//    }
+//
+//    /**
+//     * Sets the onclick listener for the postRequest button
+//     */
+//    private void setPostButtonOnClickListener(){
+//        //Create a new jsonObject
+//        final JSONObject jsonObject = new JSONObject();
+//        try {
+//            jsonObject.put("Key", "Value");
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        //Set the button's onclick listener.
+//        postButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //Update the UI so that you know the request is sending
+//                textView.setText("Sending Post Request....Awaiting Response");
+//                //Send the request
+//                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+//                        Request.Method.POST,
+//                        ENDPOINT_URL + POST_ENDOINT,
+//                        jsonObject,
+//                        new Response.Listener<JSONObject>() {
+//                            @Override
+//                            public void onResponse(JSONObject response) {
+//                                Log.i(TAG, response.toString());
+//                                textView.setText(response.toString());
+//                            }
+//                        },
+//                        new Response.ErrorListener() {
+//                            @Override
+//                            public void onErrorResponse(VolleyError error) {
+//                                Log.i(TAG, error.getMessage());
+//                                textView.setText(error.getMessage());
+//                            }
+//                        }
+//
+//                );
+//                requestQueue.add(jsonObjectRequest);
+//            }
+//        });
+//
+//
+//    }
 
 
     private void setFabOnClickListener(){
